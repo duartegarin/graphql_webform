@@ -38,7 +38,7 @@ class WebformQueryById extends FieldPluginBase {
       $form = $webform->getSubmissionForm();
 
       // Load the elements of the webform into a Webform object.
-      $webform_object['elements'] = Json::encode($form['elements']);
+      $webform_object['elements'] = $form['elements'];
       $webform_object['type'] = 'Webform';
 
       // Add the Webform object to the response.

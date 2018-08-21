@@ -4,5 +4,5 @@ description: 'Provides GraphQL integration with the Webform module.'
 core: 8.x
 package: 'GraphQL'
 dependencies:
-  - graphql
   - webform
+  - graphql_json
