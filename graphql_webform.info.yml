@@ -5,4 +5,3 @@ core: 8.x
 package: 'GraphQL'
 dependencies:
   - webform
-  - graphql_json

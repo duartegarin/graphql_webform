@@ -6,7 +6,6 @@ use Drupal\graphql\Plugin\GraphQL\Fields\FieldPluginBase;
 use Drupal\graphql\GraphQL\Execution\ResolveContext;
 use GraphQL\Type\Definition\ResolveInfo;
 use Drupal\webform\Entity\Webform;
-use Drupal\Component\Serialization\Json;
 
 /**
  * A query field that finds a Webform by its ID.
@@ -33,12 +32,7 @@ class WebformQueryById extends FieldPluginBase {
     $webform = Webform::load($args['webform_id']);
 
     if ($webform) {
-
-      // Grab the entire form.
-      $form = $webform->getSubmissionForm();
-
-      // Load the elements of the webform into a Webform object.
-      $webform_object['elements'] = $form['elements'];
+      $webform_object['webform'] = $webform;
       $webform_object['type'] = 'Webform';
 
       // Add the Webform object to the response.
