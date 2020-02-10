@@ -26,9 +26,8 @@ class WebformYaml extends FieldPluginBase {
   public function resolveValues($value, array $args, ResolveContext $context, ResolveInfo $info) {
 
     /** @var \Drupal\webform\WebformInterface $webform */
-    $webform = $value['webform'];
     $definition = \Drupal::service('entity_type.manager')->getDefinition('webform');
-    $config_name = $definition->getConfigPrefix() . '.' . $webform->getConfigTarget();
+    $config_name = $definition->getConfigPrefix() . '.' . $value->getConfigTarget();
     $data = \Drupal::config($config_name)->getRawData();
     yield UtilityWebformYaml::encode($data);
 

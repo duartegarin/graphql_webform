@@ -5,7 +5,7 @@ namespace Drupal\graphql_webform\GraphQL;
 use Drupal\webform\Entity\WebformSubmission;
 
 /**
- * A helper class to wrap submision and errors when using submitForm mutation.
+ * A helper class to wrap submission and errors when using submitForm mutation.
  */
 class WebformSubmissionOutputWrapper {
 

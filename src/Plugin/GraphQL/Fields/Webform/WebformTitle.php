@@ -23,7 +23,7 @@ class WebformTitle extends FieldPluginBase {
    * {@inheritdoc}
    */
   public function resolveValues($value, array $args, ResolveContext $context, ResolveInfo $info) {
-    yield $value['webform']->label();
+    yield $value->label();
   }
 
 }

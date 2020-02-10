@@ -24,7 +24,7 @@ class WebformElements extends FieldPluginBase {
    */
   public function resolveValues($value, array $args, ResolveContext $context, ResolveInfo $info) {
     // Load the elements of the webform into a Webform object.
-    $elements = $value['webform']->getElementsDecoded();
+    $elements = $value->getElementsDecoded();
 
     foreach ($elements as $id => $element) {
       $element['#id'] = $id;

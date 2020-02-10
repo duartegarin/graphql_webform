@@ -23,7 +23,7 @@ class WebformDescription extends FieldPluginBase {
    * {@inheritdoc}
    */
   public function resolveValues($value, array $args, ResolveContext $context, ResolveInfo $info) {
-    yield $value['webform']->getDescription();
+    yield $value->getDescription();
   }
 
 }

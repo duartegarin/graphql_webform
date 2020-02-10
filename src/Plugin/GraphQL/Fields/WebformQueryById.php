@@ -12,7 +12,7 @@ use Drupal\webform\Entity\Webform;
  *
  * @GraphQLField(
  *   id = "webform_by_id",
- *   type = "WebformResult",
+ *   type = "Webform",
  *   name = "webformById",
  *   nullable = true,
  *   multi = false,
@@ -32,17 +32,10 @@ class WebformQueryById extends FieldPluginBase {
     $webform = Webform::load($args['webform_id']);
 
     if ($webform) {
-      $webform_object['webform'] = $webform;
-      $webform_object['type'] = 'Webform';
-
-      // Add the Webform object to the response.
-      $response['Webform'] = $webform_object;
+      yield $webform;
     }
 
-    // Set response type.
-    $response['type'] = 'WebformResult';
-
-    yield $response;
+    yield NULL;
 
   }
 
