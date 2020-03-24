@@ -20,6 +20,10 @@ IMPORTANT: This is a module under active development and it does not support all
  - File
  - Actions
  - Markup
+ - Webform Term Select
+ - Webform Entity Select
+ - Number
+ - Composite (with the above items supported)
 
 ## Retrieve webform elements
 
@@ -50,6 +54,10 @@ IMPORTANT: This is a module under active development and it does not support all
               rule
             }
             placeholder
+            multiple {
+              limit  # 0 means Unlimited config.
+              message
+            }
           }
           ... on WebformElementMarkup {
             markup
@@ -66,6 +74,10 @@ IMPORTANT: This is a module under active development and it does not support all
             step
             defaultValue
             title
+            multiple {
+              limit  # 0 means Unlimited config.
+              message
+            }
           }
           ... on WebformElementOptionsBase {
             title
@@ -75,6 +87,10 @@ IMPORTANT: This is a module under active development and it does not support all
               value
             }
             required {
+              message
+            }
+            multiple {
+              limit  # 0 means Unlimited config.
               message
             }
           }
@@ -90,6 +106,36 @@ IMPORTANT: This is a module under active development and it does not support all
             required {
               message
             }
+            multiple {
+              limit  # 0 means Unlimited config.
+              message
+            }
+          }
+          ... on WebformElementTermSelect {
+            title
+            termOptions(depth: 1) {
+              entityId
+              entityLabel
+            }
+          }
+          ... on WebformElementComposite {
+            elements {
+              id
+              type
+              multiple {
+                limit  # 0 means Unlimited config.
+                message
+              }
+            }
+          }
+          ... on WebformElementNumber{
+            required {
+              message
+            }
+            min
+            max
+            size
+            step
           }
         }
       }

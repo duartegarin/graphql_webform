@@ -7,7 +7,7 @@ use Drupal\graphql\Plugin\GraphQL\Fields\FieldPluginBase;
 use GraphQL\Type\Definition\ResolveInfo;
 
 /**
- * Retrieve the required property from a form element.
+ * Retrieve the form element machine name.
  *
  * @GraphQLField(
  *   secure = true,
@@ -16,23 +16,28 @@ use GraphQL\Type\Definition\ResolveInfo;
  *     "WebformElementDateBase",
  *     "WebformElementOptionsBase",
  *     "WebformElementManagedFileBase",
- *     "WebformElementNumber"
+ *     "WebformElementComposite"
  *   },
- *   id = "webform_element_required",
- *   name = "required",
- *   type = "WebformElementValidationRequired",
+ *   id = "webform_element_multiple",
+ *   name = "multiple",
+ *   type = "WebformElementValidationMultiple",
  * )
  */
-class WebformElementRequired extends FieldPluginBase {
+class WebformElementMultiple extends FieldPluginBase {
 
   /**
    * {@inheritdoc}
    */
   public function resolveValues($value, array $args, ResolveContext $context, ResolveInfo $info) {
-    if (isset($value['#required'])) {
-      $response['value'] = $value['#required'];
-      $response['message'] = isset($value['#required_error']) ? $value['#required_error'] : '';
-      $response['type'] = 'WebformElementValidationRequired';
+
+    $multiple = $value['plugin']->hasMultipleValues($value);
+
+    if ($multiple) {
+      $response['limit'] = $multiple;
+      if (isset($value['#multiple_error'])) {
+        $response['message'] = $value['#multiple_error'];
+      }
+      $response['type'] = 'WebformElementValidationMultiple';
       yield $response;
     }
   }

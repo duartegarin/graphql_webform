@@ -7,27 +7,24 @@ use Drupal\graphql\Plugin\GraphQL\Fields\FieldPluginBase;
 use GraphQL\Type\Definition\ResolveInfo;
 
 /**
- * Retrieve the size property from a form element.
+ * Retrieve min length property from a TextBase form element.
  *
  * @GraphQLField(
  *   secure = true,
- *   parents = {
- *     "WebformElementTextBase",
- *     "WebformElementNumber"
- *   },
- *   id = "webform_element_size",
- *   name = "size",
+ *   parents = {"WebformElementNumber"},
+ *   id = "webform_element_min",
+ *   name = "min",
  *   type = "Int",
  * )
  */
-class WebformElementSize extends FieldPluginBase {
+class WebformElementMin extends FieldPluginBase {
 
   /**
    * {@inheritdoc}
    */
   public function resolveValues($value, array $args, ResolveContext $context, ResolveInfo $info) {
-    if (isset($value['#size'])) {
-      yield $value['#size'];
+    if (isset($value['#min'])) {
+      yield $value['#min'];
     }
   }
 

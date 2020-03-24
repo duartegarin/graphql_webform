@@ -4,6 +4,7 @@ namespace Drupal\graphql_webform\Plugin\GraphQL\Types;
 
 use Drupal\graphql\GraphQL\Execution\ResolveContext;
 use Drupal\graphql\Plugin\GraphQL\Types\TypePluginBase;
+use Drupal\webform\Plugin\WebformElement\Textarea;
 use GraphQL\Type\Definition\ResolveInfo;
 
 /**
@@ -21,7 +22,7 @@ class WebformElementTextarea extends TypePluginBase {
    * {@inheritdoc}
    */
   public function applies($object, ResolveContext $context, ResolveInfo $info) {
-    return $object['type'] == 'WebformElement' && $object['#type'] == 'textarea';
+    return $object['plugin'] instanceof Textarea;
   }
 
 }

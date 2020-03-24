@@ -13,7 +13,8 @@ use GraphQL\Type\Definition\ResolveInfo;
  *   secure = true,
  *   parents = {
  *     "WebformElementValidationRequired",
- *     "WebformElementValidationPattern"
+ *     "WebformElementValidationPattern",
+ *     "WebformElementValidationMultiple",
  *   },
  *   id = "webform_element_validation_message",
  *   name = "message",

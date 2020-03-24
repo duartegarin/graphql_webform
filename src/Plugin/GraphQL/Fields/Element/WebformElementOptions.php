@@ -4,7 +4,11 @@ namespace Drupal\graphql_webform\Plugin\GraphQL\Fields\Element;
 
 use Drupal\graphql\GraphQL\Execution\ResolveContext;
 use Drupal\graphql\Plugin\GraphQL\Fields\FieldPluginBase;
+use Drupal\webform\Element\WebformEntitySelect;
 use GraphQL\Type\Definition\ResolveInfo;
+use Drupal\webform\Element\WebformTermSelect;
+use Drupal\webform\Plugin\WebformElement\WebformTermSelect as WebformTermSelectPlugin;
+use Drupal\webform\Plugin\WebformElement\WebformEntitySelect as WebformEntitySelectPlugin;
 
 /**
  * Retrieve options property from a OptionsBase form element.
@@ -23,13 +27,34 @@ class WebformElementOptions extends FieldPluginBase {
    * {@inheritdoc}
    */
   public function resolveValues($value, array $args, ResolveContext $context, ResolveInfo $info) {
-    if (isset($value['#options'])) {
-      foreach ($value['#options'] as $value => $title) {
-        $response['title'] = $title;
-        $response['value'] = $value;
-        $response['type'] = 'WebformElementOption';
-        yield $response;
+
+    if (isset($value['#disabled']) && $value['#disabled'] == TRUE) {
+      return;
+    }
+
+    if (!isset($value['#options'])) {
+      $value['#options'] = [];
+
+      if ($value['plugin'] instanceof WebformTermSelectPlugin) {
+        if (!isset($value['#vocabulary'])) {
+          $element_info = $value['plugin']->getInfo();
+          $value['#vocabulary'] = isset($element_info['#vocabulary']) ? $element_info['#vocabulary'] : '';
+        }
+
+        if (!empty($value['#vocabulary'])) {
+          WebformTermSelect::setOptions($value);
+        }
       }
+      elseif ($value['plugin'] instanceof WebformEntitySelectPlugin) {
+        WebformEntitySelect::setOptions($value);
+      }
+    }
+
+    foreach ($value['#options'] as $value => $title) {
+      $response['title'] = $title;
+      $response['value'] = $value;
+      $response['type'] = 'WebformElementOption';
+      yield $response;
     }
   }
 

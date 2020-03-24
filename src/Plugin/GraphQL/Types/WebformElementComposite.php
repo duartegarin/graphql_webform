@@ -4,7 +4,7 @@ namespace Drupal\graphql_webform\Plugin\GraphQL\Types;
 
 use Drupal\graphql\GraphQL\Execution\ResolveContext;
 use Drupal\graphql\Plugin\GraphQL\Types\TypePluginBase;
-use Drupal\webform\Plugin\WebformElementBase;
+use Drupal\webform\Plugin\WebformElement\WebformCompositeBase;
 use GraphQL\Type\Definition\ResolveInfo;
 
 /**
@@ -14,19 +14,18 @@ use GraphQL\Type\Definition\ResolveInfo;
  * are not implemented yet.
  *
  * @GraphQLType(
- *   id = "webform_element_type",
- *   name = "WebformElementType",
- *   interfaces = {"WebformElement"},
- *   weight = -999
+ *   id = "webform_element_composite",
+ *   name = "WebformElementComposite",
+ *   interfaces = {"WebformElement"}
  * )
  */
-class WebformElementType extends TypePluginBase {
+class WebformElementComposite extends TypePluginBase {
 
   /**
    * {@inheritdoc}
    */
   public function applies($object, ResolveContext $context, ResolveInfo $info) {
-    return $object['plugin'] instanceof WebformElementBase;
+    return $object['plugin'] instanceof WebformCompositeBase;
   }
 
 }

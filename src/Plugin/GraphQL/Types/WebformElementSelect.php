@@ -4,6 +4,7 @@ namespace Drupal\graphql_webform\Plugin\GraphQL\Types;
 
 use Drupal\graphql\GraphQL\Execution\ResolveContext;
 use Drupal\graphql\Plugin\GraphQL\Types\TypePluginBase;
+use Drupal\webform\Plugin\WebformElement\Select;
 use GraphQL\Type\Definition\ResolveInfo;
 
 /**
@@ -13,6 +14,7 @@ use GraphQL\Type\Definition\ResolveInfo;
  *   id = "webform_element_select",
  *   name = "WebformElementSelect",
  *   interfaces = {"WebformElementOptionsBase"},
+ *   weight = -1
  * )
  */
 class WebformElementSelect extends TypePluginBase {
@@ -21,7 +23,7 @@ class WebformElementSelect extends TypePluginBase {
    * {@inheritdoc}
    */
   public function applies($object, ResolveContext $context, ResolveInfo $info) {
-    return $object['type'] == 'WebformElement' && $object['#type'] == 'select';
+    return $object['plugin'] instanceof Select;
   }
 
 }

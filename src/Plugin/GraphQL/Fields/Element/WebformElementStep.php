@@ -11,7 +11,10 @@ use GraphQL\Type\Definition\ResolveInfo;
  *
  * @GraphQLField(
  *   secure = true,
- *   parents = {"WebformElementDateBase"},
+ *   parents = {
+ *   "WebformElementDateBase",
+ *     "WebformElementNumber"
+ *   },
  *   id = "webform_element_step",
  *   name = "step",
  *   type = "Int",
