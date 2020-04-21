@@ -8,6 +8,7 @@ to contribute :)
 ## Pre-Requisites
 
  1. [graphql module](https://www.drupal.org/project/graphql)
+ 2. [webform module](https://www.drupal.org/project/webform)
 
 ## Supported elements
 
