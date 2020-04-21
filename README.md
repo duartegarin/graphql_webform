@@ -10,6 +10,10 @@ to contribute :)
  1. [graphql module](https://www.drupal.org/project/graphql)
  2. [webform module](https://www.drupal.org/project/webform)
 
+## Install
+
+composer require drupal/graphql_webform
+
 ## Supported elements
 
  - Text Field
