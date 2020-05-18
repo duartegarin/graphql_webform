@@ -79,21 +79,21 @@ class SubmitForm extends MutationPluginBase implements ContainerFactoryPluginInt
 
     $webform_id = $values['webform_id'];
     if (empty($webform_id)) {
-      return new WebformSubmissionOutputWrapper(NULL, NULL, [
+      return new WebformSubmissionOutputWrapper(NULL, [
         'Missing webform_id',
       ]);
     }
 
     $webform = Webform::load($webform_id);
     if (!$webform) {
-      return new WebformSubmissionOutputWrapper(NULL, NULL, [
+      return new WebformSubmissionOutputWrapper(NULL, [
         'Invalid webform_id',
       ]);
     }
 
     $is_open = WebformSubmissionForm::isOpen($webform);
     if (!$is_open) {
-      return new WebformSubmissionOutputWrapper(NULL, NULL, [
+      return new WebformSubmissionOutputWrapper(NULL, [
         'Webform is closed for new submissions.',
       ]);
     }
