@@ -12,7 +12,7 @@ use GraphQL\Type\Definition\ResolveInfo;
  *
  * @GraphQLField(
  *   secure = true,
- *   parents = {"WebformSubmission"},
+ *   parents = {"WebformSubmissionEntity"},
  *   id = "webform_submission_output_submission_id",
  *   name = "id",
  *   type = "Int",

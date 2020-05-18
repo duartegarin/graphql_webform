@@ -15,7 +15,7 @@ use GraphQL\Type\Definition\ResolveInfo;
  *   parents = {"WebformSubmissionOutput"},
  *   id = "webform_submission_output_submission",
  *   name = "submission",
- *   type = "WebformSubmission",
+ *   type = "WebformSubmissionEntity",
  * )
  */
 class WebformSubmissionOutputSubmission extends FieldPluginBase {
