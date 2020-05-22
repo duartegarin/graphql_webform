@@ -211,7 +211,7 @@ class WebformFileUpload extends MutationPluginBase implements ContainerFactoryPl
       $allowed_extensions = $file_element['#file_extensions'];
     }
     else {
-      $file_type = str_replace('webform_', '', $value['#type']);
+      $file_type = str_replace('webform_', '', $file_element['#type']);
       $allowed_extensions = \Drupal::config('webform.settings')->get("file.default_{$file_type}_extensions");
     }
     $errors = file_validate_extensions($entity, $allowed_extensions);
