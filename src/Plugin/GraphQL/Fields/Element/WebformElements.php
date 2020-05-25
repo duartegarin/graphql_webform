@@ -33,6 +33,17 @@ class WebformElements extends FieldPluginBase {
       $elements = $plugin->getCompositeElements();
     }
 
+    // By default the webform module adds a submit to the elements but it is not
+    // being returned as an element on getElementsDecoded. So, if it's empty,
+    // which means that user has not edited the element we force adding the
+    // element here.
+    if (!isset($elements['actions'])) {
+      $elements['actions'] = [
+        '#type' => 'webform_actions',
+        '#submit__label' => 'Submit'
+      ];
+    }
+
     $element_manager = \Drupal::service('plugin.manager.webform.element');
 
     foreach ($elements as $id => $element) {
