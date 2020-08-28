@@ -30,7 +30,9 @@ class WebformElementDescription extends FieldPluginBase {
    * {@inheritdoc}
    */
   public function resolveValues($value, array $args, ResolveContext $context, ResolveInfo $info) {
-    yield $value['#description'];
+    if (isset($value['#description'])) {
+      yield $value['#description'];
+    }
   }
 
 }
