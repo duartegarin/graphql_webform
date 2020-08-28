@@ -118,13 +118,15 @@ class WebformFileUpload extends MutationPluginBase implements ContainerFactoryPl
     // @see http://php.net/manual/features.file-upload.errors.php.
     switch ($file->getError()) {
       case UPLOAD_ERR_INI_SIZE:
-      case UPLOAD_ERR_FORM_SIZE:
+      case UPLOAD_ERR_FORM_SIZE: {
+        $max_filesize = \Drupal::config('webform.settings')->get('file.default_max_filesize') ?: Environment::getUploadMaxSize();
         return new WebformFileUploadOutputWrapper(NULL, NULL, NULL, [
           $this->t('The file %file could not be saved because it exceeds %maxsize, the maximum allowed size for uploads.', [
             '%file' => $file->getFilename(),
-            '%maxsize' => format_size(file_upload_max_size()),
+            '%maxsize' => format_size($max_filesize),
           ]),
         ]);
+      }
 
       case UPLOAD_ERR_PARTIAL:
       case UPLOAD_ERR_NO_FILE:
