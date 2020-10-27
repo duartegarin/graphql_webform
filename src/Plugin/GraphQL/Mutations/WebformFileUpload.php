@@ -183,7 +183,7 @@ class WebformFileUpload extends MutationPluginBase implements ContainerFactoryPl
     // Make sure the upload location exists and is writable.
     $this->fileSystem->prepareDirectory($upload_location, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
 
-    $destination = file_destination("{$upload_location}/{$filename}", FILE_EXISTS_RENAME);
+    $destination = $this->fileSystem->getDestinationFilename("{$upload_location}/{$filename}", FileSystemInterface::EXISTS_RENAME);
 
     // Begin building file entity.
     $values = [
