@@ -38,7 +38,9 @@ class WebformElementTermOptions extends FieldPluginBase {
       $vocabulary = $element_info['#vocabulary'];
     }
 
-    $terms = $taxonomy_storage->loadTree($vocabulary, 0, $args['depth'], TRUE);
+    $depth = $args['#depth'] ? $args['#depth'] : $value['#depth'];
+
+    $terms = $taxonomy_storage->loadTree($vocabulary, 0, $depth, TRUE);
 
     foreach ($terms as $term) {
       yield $term;
