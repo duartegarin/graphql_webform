@@ -30,15 +30,21 @@ class WebformElementTermOptions extends FieldPluginBase {
 
     /** @var \Drupal\taxonomy\TermStorageInterface $taxonomy_storage */
     $taxonomy_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+    $depth_value = NULL;
     if (isset($value['#vocabulary'])) {
       $vocabulary = $value['#vocabulary'];
     }
     else {
-      $element_info = $value['plugin']->getInfo();
-      $vocabulary = $element_info['#vocabulary'];
+      $element_info = $value['plugin']->defineDefaultProperties();
+      $vocabulary = $element_info['vocabulary'];
+      $depth_value = isset($element_info['depth']) ? $element_info['depth'] : NULL;
     }
 
-    $depth = $args['#depth'] ? $args['#depth'] : $value['#depth'];
+    if (isset($value['#depth'])) {
+      $depth_value = $value['#depth'];
+    }
+
+    $depth = !empty($args['depth']) ? $args['depth'] : $depth_value;
 
     $terms = $taxonomy_storage->loadTree($vocabulary, 0, $depth, TRUE);
 
