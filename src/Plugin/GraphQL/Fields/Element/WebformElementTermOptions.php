@@ -35,7 +35,7 @@ class WebformElementTermOptions extends FieldPluginBase {
       $vocabulary = $value['#vocabulary'];
     }
     else {
-      $element_info = $value['plugin']->defineDefaultProperties();
+      $element_info = $value['plugin']->getDefaultProperties();
       $vocabulary = $element_info['vocabulary'];
       $depth_value = isset($element_info['depth']) ? $element_info['depth'] : NULL;
     }
