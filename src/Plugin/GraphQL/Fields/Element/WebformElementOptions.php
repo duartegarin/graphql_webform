@@ -49,6 +49,12 @@ class WebformElementOptions extends FieldPluginBase {
         WebformEntitySelect::setOptions($value);
       }
     }
+    else {
+      // Handle predefined options.
+      if (is_string($value['#options']) && $value['plugin'] instanceof Select) {
+        $value['#options'] = WebformOptions::getElementOptions($value);
+      }
+    }
 
     foreach ($value['#options'] as $value => $title) {
       $response['title'] = $title;
