@@ -5,6 +5,8 @@ namespace Drupal\graphql_webform\Plugin\GraphQL\Fields\Element;
 use Drupal\graphql\GraphQL\Execution\ResolveContext;
 use Drupal\graphql\Plugin\GraphQL\Fields\FieldPluginBase;
 use Drupal\webform\Element\WebformEntitySelect;
+use Drupal\webform\Entity\WebformOptions;
+use Drupal\webform\Plugin\WebformElement\Select;
 use GraphQL\Type\Definition\ResolveInfo;
 use Drupal\webform\Element\WebformTermSelect;
 use Drupal\webform\Plugin\WebformElement\WebformTermSelect as WebformTermSelectPlugin;
