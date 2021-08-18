@@ -6,6 +6,7 @@ use Drupal\graphql\GraphQL\Execution\ResolveContext;
 use Drupal\graphql\Plugin\GraphQL\Fields\FieldPluginBase;
 use Drupal\webform\Element\WebformEntitySelect;
 use Drupal\webform\Entity\WebformOptions;
+use Drupal\webform\Plugin\WebformElement\Radios;
 use Drupal\webform\Plugin\WebformElement\Select;
 use GraphQL\Type\Definition\ResolveInfo;
 use Drupal\webform\Element\WebformTermSelect;
@@ -53,7 +54,7 @@ class WebformElementOptions extends FieldPluginBase {
     }
     else {
       // Handle predefined options.
-      if (is_string($value['#options']) && $value['plugin'] instanceof Select) {
+      if (is_string($value['#options']) && ($value['plugin'] instanceof Select || $value['plugin'] instanceof Radios)) {
         $value['#options'] = WebformOptions::getElementOptions($value);
       }
     }
