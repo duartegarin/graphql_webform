@@ -12,8 +12,9 @@ use GraphQL\Type\Definition\ResolveInfo;
  * @GraphQLField(
  *   secure = true,
  *   parents = {
- *   "WebformElementDateBase",
- *     "WebformElementNumber"
+ *     "WebformElementDateBase",
+ *     "WebformElementNumber",
+ *     "WebformElementRating"
  *   },
  *   id = "webform_element_step",
  *   name = "step",

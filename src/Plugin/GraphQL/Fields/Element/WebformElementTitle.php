@@ -18,7 +18,8 @@ use GraphQL\Type\Definition\ResolveInfo;
  *     "WebformElementManagedFileBase",
  *     "WebformElementDateBase",
  *     "WebformElementComposite",
- *     "WebformElementNumber"
+ *     "WebformElementNumber",
+ *     "WebformElementRating"
  *   },
  *   id = "webform_element_title",
  *   name = "title",
