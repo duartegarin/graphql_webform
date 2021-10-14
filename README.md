@@ -1,14 +1,15 @@
 # GraphQL Webform Drupal module
+
 A module to integrate webform with the graphql module.
 
-IMPORTANT: This is a module under active development and it does not support all 
-webform features and elements yet. Feel free to raise Feature Requests and 
+IMPORTANT: This is a module under active development and it does not support all
+webform features and elements yet. Feel free to raise Feature Requests and
 to contribute :)
 
 ## Pre-Requisites
 
- 1. [graphql module](https://www.drupal.org/project/graphql)
- 2. [webform module](https://www.drupal.org/project/webform)
+1.  [graphql module](https://www.drupal.org/project/graphql)
+2.  [webform module](https://www.drupal.org/project/webform)
 
 ## Install
 
@@ -16,21 +17,22 @@ composer require drupal/graphql_webform
 
 ## Supported elements
 
- - Text Field
- - Email
- - Textarea
- - Hidden
- - Date
- - Checkboxes
- - Radios
- - Select
- - File
- - Actions
- - Markup
- - Webform Term Select
- - Webform Entity Select
- - Number
- - Composite (with the above items supported)
+- Text Field
+- Email
+- Textarea
+- Hidden
+- Date
+- Checkboxes
+- Radios
+- Select
+- File
+- Actions
+- Markup
+- Webform Term Select
+- Webform Entity Select
+- Number
+- Rating
+- Composite (with the above items supported)
 
 ## Retrieve webform elements
 
@@ -168,14 +170,15 @@ composer require drupal/graphql_webform
       "date_of_birth":"05/01/1930",
       "email":"email@example.com"
     }
-becomes the following string when creating a submit using the `submitForm` 
+
+becomes the following string when creating a submit using the `submitForm`
 mutation
 
     {
       "values": "{\"webform_id\":\"contact\",\"subject\":\"This is the subject\",\"message\":\"Hey, I have a question\",\"date_of_birth\":\"05\/01\/1991\",\"email\":\"email@example.com\"}"
     }
 
-`errors` contains the validation errors in case the values submitted are wrong. 
+`errors` contains the validation errors in case the values submitted are wrong.
 For example:
 
     {
@@ -192,8 +195,9 @@ For example:
     }
 
 ### Create a webform submission when webform contains File elements
-If the webform contains a File field, you need to submit/create the file before 
-creating the submission itself. There is a `webformFileUpload` mutation 
+
+If the webform contains a File field, you need to submit/create the file before
+creating the submission itself. There is a `webformFileUpload` mutation
 available.
 
     mutation createFile($file: Upload!){
@@ -209,10 +213,9 @@ available.
       }
     }
 
-
-As the result you can check for errors, violations, entity and entityId. You can 
-query for `entity > entityId` or `fid` to get the file id that was just created. 
-`fid` is a necessary GraphQL field for cases where the graphql is performed by 
+As the result you can check for errors, violations, entity and entityId. You can
+query for `entity > entityId` or `fid` to get the file id that was just created.
+`fid` is a necessary GraphQL field for cases where the graphql is performed by
 anonymous users and the file has been uploaded to the private folder.
 
 When you get the fid (e.g. 1910) you then update the `$values` variable with it:

@@ -11,7 +11,10 @@ use GraphQL\Type\Definition\ResolveInfo;
  *
  * @GraphQLField(
  *   secure = true,
- *   parents = {"WebformElementNumber"},
+ *   parents = {
+ *     "WebformElementNumber",
+ *     "WebformElementRating"
+ *   },
  *   id = "webform_element_min",
  *   name = "min",
  *   type = "Int",
