@@ -18,7 +18,9 @@ use GraphQL\Type\Definition\ResolveInfo;
  *     "WebformElementManagedFileBase",
  *     "WebformElementDateBase",
  *     "WebformElementComposite",
- *     "WebformElementNumber"
+ *     "WebformElementNumber",
+ *     "WebformElementSection",
+ *     "WebformElementCheckbox",
  *   },
  *   id = "webform_element_title",
  *   name = "title",
@@ -31,7 +33,7 @@ class WebformElementTitle extends FieldPluginBase {
    * {@inheritdoc}
    */
   public function resolveValues($value, array $args, ResolveContext $context, ResolveInfo $info) {
-    yield $value['#title'];
+    yield $value['#title'] ?? '';
   }
 
 }
