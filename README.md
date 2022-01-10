@@ -220,3 +220,24 @@ When you get the fid (e.g. 1910) you then update the `$values` variable with it:
     {
       "values": "{\"webform_id\":\"contact\",\"subject\":\"This is the subject\",\"message\":\"Hey, I have a question\",\"date_of_birth\":\"05\/01\/1991\",\"email\":\"email@example.com\",\"upload_your_file\":\"1910\"}"
     }
+
+### Create a webform submission with a source entity
+If the webform supports a source entity, you can pass in the variables with the
+data, the same as with `webform_id`. For example, if your webform's URL is:
+`/form/my-form?source_entity_id=123&source_entity_type=node`
+
+Pass the following JSON encoded values:
+
+```
+{
+    "webform_id": "my_form",
+    "source_entity_id": "123",
+    "source_entity_type": "node",
+    "subject":"This is the subject",
+    "message":"Hey, I have a question",
+    "date_of_birth":"05/01/1930",
+    "email":"email@example.com"
+  }
+```
+
+The mutation will automatically pass these values to the webform submission.
