@@ -67,6 +67,8 @@ class WebformElements extends FieldPluginBase {
    */
   private function getElements($value) {
     if ($value instanceof Webform) {
+      $elements = $value->getElementsDecoded();
+      $value->applyVariants(NULL, $elements);
       return $value->getElementsDecoded();
     }
 
