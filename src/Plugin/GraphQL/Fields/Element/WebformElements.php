@@ -17,6 +17,7 @@ use GraphQL\Type\Definition\ResolveInfo;
  *     "Webform",
  *     "WebformElementComposite",
  *     "WebformElementSection",
+ *     "WebformElementContainer",
  *     "WebformElementFlexbox"
  *   },
  *   id = "webform_elements",
