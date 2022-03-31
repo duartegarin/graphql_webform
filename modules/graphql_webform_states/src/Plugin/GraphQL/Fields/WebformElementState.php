@@ -50,7 +50,12 @@ class WebformElementState extends FieldPluginBase {
    */
   private function getConditionLogic($conditions) {
     if ($conditions && WebformArrayHelper::isSequential($conditions)) {
-      return (in_array('xor', $conditions)) ? 'xor' : 'or';
+      if (in_array('xor', $conditions)) {
+        return 'xor';
+      }
+      else if (in_array('or', $conditions)) {
+        return 'or';
+      }
     }
 
     return 'and';
