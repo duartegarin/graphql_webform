@@ -6,6 +6,7 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\graphql\GraphQL\Execution\ResolveContext;
 use Drupal\graphql\Plugin\GraphQL\Mutations\MutationPluginBase;
 use Drupal\graphql_webform\GraphQL\WebformSubmissionOutputWrapper;
+use Drupal\webform\Entity\WebformSubmission;
 use Drupal\webform\WebformSubmissionForm;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use GraphQL\Type\Definition\ResolveInfo;
@@ -103,16 +104,40 @@ class SubmitForm extends MutationPluginBase implements ContainerFactoryPluginInt
     $result = $this->renderer->executeInRenderContext($renderContext, function () use ($values) {
       $webform_data['webform_id'] = $values['webform_id'];
       unset($values['webform_id']);
+     
+      if (!empty($values['sid'])) {
+        $webform_data['sid'] = $values['sid'];
+        unset($values['sid']);
+      }
       $webform_data['data'] = $values;
 
-      // Validate submission.
-      $errors = WebformSubmissionForm::validateFormValues($webform_data);
+      if (isset($webform_data['sid'])) {
+        $webform_submission = WebformSubmission::load($webform_data['sid']);
 
-      if (!empty($errors)) {
-        return $this->resolveOutput(NULL, $errors);
+        foreach ($webform_data['data'] as $field => $value) {
+          $webform_submission->setElementData($field, $value);
+        }
+
+        // Validate submission.
+        $errors = WebformSubmissionForm::validateWebformSubmission($webform_submission);
+
+        if (!empty($errors)) {
+          return $this->resolveOutput(NULL, $errors);
+        }
+
+        $webform_submission = WebformSubmissionForm::submitWebformSubmission($webform_submission);
+      }
+      else {
+        // Validate submission.
+        $errors = WebformSubmissionForm::validateFormValues($webform_data);
+
+        if (!empty($errors)) {
+          return $this->resolveOutput(NULL, $errors);
+        }
+
+        $webform_submission = WebformSubmissionForm::submitFormValues($webform_data);
       }
 
-      $webform_submission = WebformSubmissionForm::submitFormValues($webform_data);
       return $this->resolveOutput($webform_submission);
     });
 
