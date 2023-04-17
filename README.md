@@ -31,6 +31,7 @@ composer require drupal/graphql_webform
  - Webform Entity Select
  - Number
  - Composite (with the above items supported)
+ - Time
 
 ## Retrieve webform elements
 
