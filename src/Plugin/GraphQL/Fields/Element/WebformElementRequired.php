@@ -18,6 +18,7 @@ use GraphQL\Type\Definition\ResolveInfo;
  *     "WebformElementManagedFileBase",
  *     "WebformElementNumber",
  *     "WebformElementCheckbox",
+ *     "WebformElementTimeBase",
  *   },
  *   id = "webform_element_required",
  *   name = "required",

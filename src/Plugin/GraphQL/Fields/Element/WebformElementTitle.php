@@ -21,6 +21,7 @@ use GraphQL\Type\Definition\ResolveInfo;
  *     "WebformElementNumber",
  *     "WebformElementSection",
  *     "WebformElementCheckbox",
+ *     "WebformElementTimeBase",
  *   },
  *   id = "webform_element_title",
  *   name = "title",
