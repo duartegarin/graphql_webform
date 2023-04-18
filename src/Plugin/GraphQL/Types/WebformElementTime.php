@@ -13,7 +13,7 @@ use GraphQL\Type\Definition\ResolveInfo;
  * @GraphQLType(
  *   id = "webform_element_time",
  *   name = "WebformElementTime",
- *   interfaces = {"WebformElement"},
+ *   interfaces = {"WebformElementTimeBase"},
  * )
  */
 class WebformElementTime extends TypePluginBase {
