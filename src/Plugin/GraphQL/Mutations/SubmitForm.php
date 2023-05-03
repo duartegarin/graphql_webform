@@ -103,6 +103,12 @@ class SubmitForm extends MutationPluginBase implements ContainerFactoryPluginInt
     $result = $this->renderer->executeInRenderContext($renderContext, function () use ($values) {
       $webform_data['webform_id'] = $values['webform_id'];
       unset($values['webform_id']);
+      if (!empty($values['source_entity_id']) && !empty($values['source_entity_type'])) {
+        $webform_data['entity_id'] = $values['source_entity_id'];
+        $webform_data['entity_type'] = $values['source_entity_type'];
+        unset($values['source_entity_id']);
+        unset($values['source_entity_type']);
+      }
       $webform_data['data'] = $values;
 
       // Validate submission.

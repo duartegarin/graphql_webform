@@ -1,29 +1,28 @@
 <?php
 
-namespace Drupal\graphql_webform\Plugin\GraphQL\Fields\Element;
+namespace Drupal\graphql_webform_states\Plugin\GraphQL\Fields;
 
 use Drupal\graphql\GraphQL\Execution\ResolveContext;
 use Drupal\graphql\Plugin\GraphQL\Fields\FieldPluginBase;
 use GraphQL\Type\Definition\ResolveInfo;
 
 /**
- * Retrieve the markup property of a Markup/Basic HTML element.
+ * The selector of the condition.
  *
  * @GraphQLField(
- *   secure = true,
- *   parents = {"WebformElementMarkup"},
- *   id = "webform_element_markup",
- *   name = "markup",
+ *   id = "webform_element_state_condition_selector",
+ *   parents = {"WebformElementStateCondition"},
+ *   name = "selector",
  *   type = "String",
  * )
  */
-class WebformElementMarkup extends FieldPluginBase {
+class ConditionSelector extends FieldPluginBase {
 
   /**
    * {@inheritdoc}
    */
   public function resolveValues($value, array $args, ResolveContext $context, ResolveInfo $info) {
-    yield $value['#markup'] ?? $value['#text'] ?? '';
+    yield $value['selector'] ?? '';
   }
 
 }

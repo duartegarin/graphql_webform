@@ -1,0 +1,10 @@
+name: 'GraphQL Webform States'
+type: module
+description: 'Provides GraphQL integration for webform element states.'
+core: 8.x
+core_version_requirement: ^8 || ^9
+package: 'GraphQL'
+dependencies:
+  - drupal:webform
+  - drupal:graphql
+  - drupal:graphql_webform
