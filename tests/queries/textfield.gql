@@ -1,0 +1,30 @@
+fragment webformElementValidationRequired on WebformElementValidationRequired {
+  message
+}
+
+fragment webformElementTextField on WebformElementTextField {
+  __typename
+  id
+  title
+  description
+  required {
+    ...webformElementValidationRequired
+  }
+}
+
+fragment webformElement on WebformElement {
+  ...webformElementTextField
+}
+
+fragment webform on Webform {
+  title
+  elements {
+    ...webformElement
+  }
+}
+
+query webform($webform_id: String!) {
+  form: webformById(webform_id: $webform_id) {
+    ...webform
+  }
+}

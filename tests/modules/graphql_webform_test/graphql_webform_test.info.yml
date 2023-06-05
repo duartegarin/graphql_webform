@@ -1,0 +1,9 @@
+name: GraphQL Webform test
+type: module
+description: Provides a test form for the graphql_webform module.
+package: Testing
+hidden: TRUE
+core_version_requirement: ^9 || ^10
+
+dependencies:
+  - graphql_webform:graphql_webform
