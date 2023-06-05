@@ -1,0 +1,31 @@
+fragment webformElementOption on WebformElementOption {
+  title
+  value
+}
+
+fragment webformElementCheckboxes on WebformElementCheckboxes {
+  __typename
+  id
+  title
+  description
+  options {
+    ...webformElementOption
+  }
+}
+
+fragment webformElement on WebformElement {
+  ...webformElementCheckboxes
+}
+
+fragment webform on Webform {
+  title
+  elements {
+    ...webformElement
+  }
+}
+
+query webform($webform_id: String!) {
+  form: webformById(webform_id: $webform_id) {
+    ...webform
+  }
+}

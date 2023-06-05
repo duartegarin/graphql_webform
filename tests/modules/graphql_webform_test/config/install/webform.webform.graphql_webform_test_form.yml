@@ -21,9 +21,13 @@ elements: |-
   optional_text_field:
     '#type': textfield
     '#title': 'Optional text field'
-  checkbox:
-    '#type': checkbox
-    '#title': Checkbox
+  checkboxes:
+    '#type': checkboxes
+    '#title': Checkboxes
+    '#description': 'Choose your moons.'
+    '#options':
+      phobos: Phobos
+      deimos: Deimos
 css: ''
 javascript: ''
 settings:
