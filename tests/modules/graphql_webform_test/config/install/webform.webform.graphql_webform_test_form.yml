@@ -31,6 +31,10 @@ elements: |-
   unsupported_field:
     '#type': webform_height
     '#title': 'Unsupported field'
+  textarea:
+    '#type': textarea
+    '#title': Textarea
+    '#description': 'Tell us a bit more about yourself.'
 css: ''
 javascript: ''
 settings:

@@ -1,0 +1,23 @@
+fragment webformElementTextarea on WebformElementTextarea {
+  __typename
+  id
+  title
+  description
+}
+
+fragment webformElement on WebformElement {
+  ...webformElementTextarea
+}
+
+fragment webform on Webform {
+  title
+  elements {
+    ...webformElement
+  }
+}
+
+query webform($webform_id: String!) {
+  form: webformById(webform_id: $webform_id) {
+    ...webform
+  }
+}
