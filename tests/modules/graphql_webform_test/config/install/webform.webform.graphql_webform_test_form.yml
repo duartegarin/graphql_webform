@@ -28,6 +28,9 @@ elements: |-
     '#options':
       phobos: Phobos
       deimos: Deimos
+  unsupported_field:
+    '#type': webform_height
+    '#title': 'Unsupported field'
 css: ''
 javascript: ''
 settings:
